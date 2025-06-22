@@ -1,0 +1,162 @@
+:root {
+    --bg-color: #000000;
+    --bright-green: #00FF00;
+    --dim-green: #33FF33;
+    --amber: #FFC300;
+    --red: red;
+    --gray: #B0B0B0;
+    --grid-color: rgba(0, 255, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: white;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+
+    background-image: 
+        repeating-linear-gradient(0deg, var(--grid-color) 0px, var(--grid-color) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, var(--grid-color) 0px, var(--grid-color) 1px, transparent 1px, transparent 20px);
+}
+
+.boot-sequence {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    padding-left: 20px;
+}
+
+.boot-line {
+    color: white;
+    font-family: 'Courier New', monospace;
+    margin: 5px 0;
+    white-space: pre;
+}
+
+.ok-status {
+    color: var(--bright-green);
+    font-family: 'Courier New', monospace;
+}
+
+.alert-line {
+    color: var(--red);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.system-line {
+    font-family: 'Courier New', monospace;
+    margin-top: 10px;
+}
+
+.prompt-user {
+    color: #55AAFF;
+}
+
+.prompt-host {
+    color: var(--bright-green);
+}
+
+.prompt-path {
+    color: var(--gray);
+}
+
+.prompt-cmd {
+    color: white;
+}
+
+.flash-header {
+    color: var(--bright-green);
+    font-weight: bold;
+    font-size: 1.4em;
+    animation: flash 0.8s ease-in-out;
+    margin-bottom: 20px;
+}
+
+@keyframes flash {
+    0% { opacity: 0; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.image-container {
+    margin: 20px auto;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid var(--bright-green);
+    box-shadow: 0 0 20px var(--bright-green);
+    transition: all 0.2s ease;
+}
+
+.image-container:hover {
+    box-shadow: 0 0 30px var(--bright-green);
+    transform: scale(1.02);
+}
+
+.profile-img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.command-link {
+    display: inline-block;
+    color: var(--bright-green);
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 5px 0;
+    font-family: 'Courier New', monospace;
+    border: none;
+    background: none;
+    transition: all 0.2s ease;
+}
+
+.command-link:hover {
+    color: var(--bright-green);
+    text-shadow: 0 0 5px var(--bright-green);
+    transform: scale(1.05);
+}
+
+.footer {
+    margin-top: 40px;
+    color: var(--dim-green);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.blink-cursor {
+    display: inline-block;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to { visibility: hidden; }
+}
+
+@media (max-width: 1024px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .command-link {
+        width: auto;
+    }
+    .profile-img {
+        max-width: 200px;
+    }
+    .flash-header {
+        font-size: 1.2em;
+    }
+}
