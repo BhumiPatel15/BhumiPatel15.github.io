@@ -80,10 +80,12 @@ function showMainContent() {
     document.querySelector('.image-container').style.display = 'inline-block';
     document.querySelector('.button-container').style.display = 'block';
     document.querySelector('.footer').style.display = 'block';
+    document.querySelector('.description-container').style.display = 'block';
 }
 
 document.querySelector('.image-container').style.display = 'none';
 document.querySelector('.button-container').style.display = 'none';
 document.querySelector('.footer').style.display = 'none';
+document.querySelector('.description-container').style.display = 'none';
 
 window.onload = typeLine;
