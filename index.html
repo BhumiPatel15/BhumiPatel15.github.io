@@ -3,52 +3,103 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bhumi Patel — Cybersecurity Student | Terminal Access</title>
-    
+    <title>Bhumi Patel — Cybersecurity Portfolio</title>
+
     <!-- Link to CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
-    
+
     <!-- Link to JavaScript -->
     <script src="assets/js/script.js" defer></script>
 </head>
-
 <body>
+    <!-- Bootup Terminal Sequence -->
+    <div class="boot-sequence"></div>
 
-    <!-- Boot sequence text -->
-    <div class="boot-sequence">
-        <!-- Boot lines will appear here with JS typing -->
-    </div>
-
-    <!-- Main header (BURST after boot) -->
+    <!-- Main Header -->
     <div class="main-header"></div>
 
+    <!-- Sticky Navigation (hidden initially) -->
+    <nav style="display:none;" class="main-nav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <!-- Profile Image — Clickable -->
-    <div class="image-container">
+    <div class="image-container" style="display:none;">
         <a href="portfolio.html">
             <img src="assets/media/WhatsApp Image 2025-06-22 at 02.32.21_6115297f.jpg" alt="Bhumi Patel" class="profile-img" title="[ CLICK TO ACCESS FULL PROFILE DATA ]" />
         </a>
     </div>
-    <!-- description --> 
-    <div class="description-container" id="description-block">
-  <p>
-    Cybersecurity graduate student with hands-on experience in real-world challenges — from CTFs to cloud hardening.<br>
-    Passionate about solving problems that matter, building secure systems, and defending the digital frontier.<br>
-    Currently balancing academic life, NGO project work, and career-building — one terminal at a time.
-  </p>
-  <a href="portfolio.html" class="terminal-button glow-button">[ EXECUTE --profile_details.sh ]</a>
-</div>
-    <!-- Buttons — Links styled like terminal commands -->
-    <div class="button-container">
-        <a href="https://www.linkedin.com/in/bhumi-j-patel" target="_blank" class="command-link">[ CONNECT --network=LinkedIn ]</a>
-        <a href="https://github.com/BhumiPatel15" target="_blank" class="command-link">[ ACCESS --repos=GitHub ]</a>
-        <a href="mailto:bpatel55@mail.roosevelt.edu" class="command-link">[ INITIATE --secure_channel ]</a>
-        <a href="resume.pdf" target="_blank" class="command-link">[ DOWNLOAD --resume.pdf ]</a>
-    </div>
+
+    <!-- Sections (hidden initially, shown after boot) -->
+    <section id="about" class="content-section" style="display:none;">
+        <h2>About Me</h2>
+        <p>
+            Master’s Cybersecurity student at Roosevelt University with a strong background in Site Reliability Engineering and Support roles. Proficient in AWS, GCP, Splunk, Jenkins, GitLab, and Python scripting. Actively involved in cybersecurity communities like WiCyS and Girls Who Code, and leading a real-world NGO project on secure healthcare access.
+        </p>
+    </section>
+
+    <section id="experience" class="content-section" style="display:none;">
+        <h2>Experience</h2>
+        <h3>Cybersecurity & Compliance Engineer Intern</h3>
+        <p>SAFE Coalition for Human Rights | May 2025 – Present</p>
+        <ul>
+            <li>Built HIPAA-compliant secure NGO platform from scratch</li>
+            <li>Version control, Jira/Confluence setup</li>
+        </ul>
+
+        <h3>Site Reliability Engineer</h3>
+        <p>Crest Data Systems | May 2022 – Aug 2024</p>
+        <ul>
+            <li>Managed AWS/GCP infrastructure, CI/CD via Jenkins, Puppet</li>
+            <li>Used Python and YAML for scripting and automation</li>
+        </ul>
+
+        <h3>Software Specialist</h3>
+        <p>eClinicalWorks | Jul 2021 – Mar 2022</p>
+        <ul>
+            <li>Implemented HL7 integrations and data queries</li>
+        </ul>
+
+        <h3>QA Intern</h3>
+        <p>Carloman Systems | Dec 2020 – Apr 2021</p>
+        <ul>
+            <li>Tested MQTT-based signage systems on AWS</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="content-section" style="display:none;">
+        <h2>Projects</h2>
+        <ul>
+            <li>CyberForce CTF: Blue Team infrastructure defense (AWS)</li>
+            <li>Cyber Forensics Case: Investigated user violations</li>
+            <li>MedDataCorp Research: HIPAA-compliant system design</li>
+            <li>Cyber Ethics Presentation: Explored GDPR, HIPAA</li>
+        </ul>
+    </section>
+
+    <section id="certs" class="content-section" style="display:none;">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Cyber Skyline Individual Game, Spring 2025</li>
+            <li>Cyber Skyline Team Game, Spring 2025</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="content-section" style="display:none;">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:bpatel55@mail.roosevelt.edu">bpatel55@mail.roosevelt.edu</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/bhumi-j-patel" target="_blank">linkedin.com/in/bhumi-j-patel</a></p>
+        <p>GitHub: <a href="https://github.com/BhumiPatel15" target="_blank">github.com/BhumiPatel15</a></p>
+        <p>Resume: <a href="resume.pdf" target="_blank">Download PDF</a></p>
+    </section>
 
     <!-- Footer -->
-    <div class="footer">
-      [ SYSTEM ONLINE -- Awaiting next input <span class="blink-cursor">▋</span> ]
+    <div class="footer" style="display:none;">
+        [ SYSTEM ONLINE -- Awaiting next input <span class="blink-cursor">▋</span> ]
     </div>
-
 </body>
 </html>
