@@ -5,19 +5,15 @@ const bootLines = [
     "starting intrusion detection service... [ OK ]",
     "establishing VPN tunnel... [ OK ]",
     "performing initial threat scan... [ OK ]",
-    "user@bhumi-terminal:~$ ./open_profile"
+    "user@bhumi-terminal:~$ ./open_portfolio"
 ];
 
-const mainHeaderLine = "[ SCANNING COMPLETE... MATCH FOUND — Bhumi Patel | M.S. Cybersecurity Student | SRE & Cloud Security | STATUS: ACTIVE ]";
+const mainHeaderLine = "[ SCANNING COMPLETE... PROFILE IDENTIFIED — Bhumi Patel | Cybersecurity Student | STATUS: ACTIVE ]";
 
 const bootContainer = document.querySelector('.boot-sequence');
 const mainHeaderContainer = document.querySelector('.main-header');
 
 let lineIndex = 0;
-let charIndex = 0;
-
-const lineDelay = 50;
-const charDelay = 10;
 
 function typeLine() {
     if (lineIndex < bootLines.length) {
@@ -33,59 +29,51 @@ function typeLine() {
         }
 
         bootContainer.appendChild(p);
-
         typeCharacter(p, line, 0, () => {
             lineIndex++;
-            setTimeout(typeLine, lineDelay);
+            setTimeout(typeLine, 60);
         });
     } else {
-        setTimeout(() => {
-            bootContainer.innerHTML = "";
-            showMainContent();
-        }, 500);
+        setTimeout(showMainContent, 700);
     }
 }
 
-function typeCharacter(element, line, charIndex, callback) {
-    if (charIndex < line.length) {
-        element.textContent += line.charAt(charIndex);
-        setTimeout(() => typeCharacter(element, line, charIndex + 1, callback), charDelay);
+function typeCharacter(el, text, i, cb) {
+    if (i < text.length) {
+        el.textContent += text.charAt(i);
+        setTimeout(() => typeCharacter(el, text, i + 1, cb), 10);
     } else {
-        if (line.includes("[ OK ]")) {
-            const parts = line.split("[ OK ]");
-            element.innerHTML = `${parts[0]}<span class="ok-status">[ OK ]</span>`;
+        if (text.includes("[ OK ]")) {
+            const parts = text.split("[ OK ]");
+            el.innerHTML = `${parts[0]}<span class="ok-status">[ OK ]</span>`;
         }
-
-        if (line.includes("user@")) {
-            const promptParts = line.match(/(.*?)@(.*?):(.*?)\$ (.*)/);
-            if (promptParts) {
-                element.innerHTML = 
-                    `<span class="prompt-user">${promptParts[1]}</span>` + "@" +
-                    `<span class="prompt-host">${promptParts[2]}</span>` + ":" +
-                    `<span class="prompt-path">${promptParts[3]}$</span> ` +
-                    `<span class="prompt-cmd">${promptParts[4]}</span>`;
+        if (text.includes("user@")) {
+            const match = text.match(/(.*?)@(.*?):(.*?)\\$ (.*)/);
+            if (match) {
+                el.innerHTML =
+                    `<span class="prompt-user">${match[1]}</span>@` +
+                    `<span class="prompt-host">${match[2]}</span>:` +
+                    `<span class="prompt-path">${match[3]}$</span> ` +
+                    `<span class="prompt-cmd">${match[4]}</span>`;
             }
         }
-
-        callback();
+        cb();
     }
 }
 
 function showMainContent() {
+    bootContainer.innerHTML = "";
     const p = document.createElement('p');
     p.className = 'flash-header';
     p.textContent = mainHeaderLine;
     mainHeaderContainer.appendChild(p);
 
+    // Reveal rest of the content
+    document.querySelector('nav').style.display = 'flex';
     document.querySelector('.image-container').style.display = 'inline-block';
-    document.querySelector('.button-container').style.display = 'block';
+    document.querySelectorAll('.content-section').forEach(section => section.style.display = 'block');
     document.querySelector('.footer').style.display = 'block';
-    document.querySelector('.description-container').style.display = 'block';
 }
 
-document.querySelector('.image-container').style.display = 'none';
-document.querySelector('.button-container').style.display = 'none';
-document.querySelector('.footer').style.display = 'none';
-document.querySelector('.description-container').style.display = 'none';
-
+// Start on load
 window.onload = typeLine;
