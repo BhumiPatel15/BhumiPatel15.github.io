@@ -1,0 +1,118 @@
+# data.yml — edit just this file to update your site
+name: Bhumi Patel
+contact:
+  linkedin: https://www.linkedin.com/in/bhumi-j-patel/
+  email: bhumij96official@gmail.com
+  phone: "+1(515)770-1718"
+
+summary: >
+  Cybersecurity graduate student specializing in cloud security, HIPAA compliance, and incident response.
+  Former Site Reliability Engineer with experience in AWS, GCP, Splunk, and automation. Passionate about
+  delivering secure, scalable solutions and contributing to impactful security projects.
+
+experience:
+  - company: SafeCHR (NGO)
+    role: Cybersecurity & Compliance Intern
+    location: Chicago, IL (Remote/Hybrid)
+    start: May 2025
+    end: Jul 2025
+    highlights:
+      - Designed HIPAA-aligned security architecture and secure SDLC workflows.
+      - Drafted compliance policies and implemented AWS-based access controls.
+      - Collaborated with stakeholders to secure intake, clinical, and crisis workflows.
+
+  - company: Crest Data Systems (Splunk)
+    role: Site Reliability Engineer
+    location: Ahmedabad, India
+    start: "2022"
+    end: "2023"
+    highlights:
+      - Managed Splunk Enterprise/Cloud deployments on AWS & GCP with SIEM monitoring.
+      - Automated operations with Jenkins, Puppet, YAML, and Python; hardened Linux servers.
+      - Implemented guardrails after SHC incident, reducing downtime risk by ~40%.
+
+  - company: eClinicalWorks
+    role: Support Specialist
+    location: Gujarat, India
+    start: "2020"
+    end: "2021"
+    highlights:
+      - Implemented HL7 interfaces and SQL workflows for healthcare data exchange.
+      - Streamlined support processes to improve issue resolution times.
+
+certifications:
+  - name: AWS Certified Cloud Practitioner
+    year: 2025
+    details: In progress
+  - name: ISC2 Certified in Cybersecurity (CC)
+    year: 2025
+    details: In progress
+  - name: CompTIA Security+
+    year: 2025
+    details: Planned
+  - name: CompTIA Network+
+    year: 2025
+    details: Planned
+
+skills:
+  - AWS
+  - GCP
+  - Splunk
+  - SIEM
+  - Linux Hardening
+  - Python
+  - Bash
+  - Git
+  - Jenkins
+  - Puppet
+  - HIPAA
+  - HL7
+  - Compliance
+  - Incident Response
+
+organizations:
+  - name: WiCyS RU Chapter
+    role: Vice President
+    start: 2025
+    end: Present
+    details: Leading workshops, CTFs, and industry engagement.
+  - name: Girls Who Code RU Chapter
+    role: President
+    start: 2025
+    end: Present
+    details: Organizing events and mentoring students.
+
+volunteering:
+  - name: SafeCHR NGO
+    role: Cybersecurity & Compliance Volunteer
+    year: 2025
+    details: Supporting secure development and compliance documentation.
+  - name: DFRWS Conference
+    role: Volunteer
+    year: 2024
+    details: Assisted with event coordination and technical support.
+
+education:
+  - school: Roosevelt University
+    degree: M.S. Cybersecurity
+    location: Chicago, IL
+    start: "2024"
+    end: Present
+    notes: Vice President, WiCyS RU Chapter; CTF participant.
+  - school: DDIT
+    degree: B.E. Computer Science
+    location: Gujarat, India
+    start: "2014"
+    end: "2018"
+
+projects:
+  - name: HIPAA-Compliant Shelter Platform
+    role: Security & Compliance Engineer
+    year: 2025
+    details: Designed security architecture and compliance strategy for a multi-role web platform.
+  - name: CTF Challenges & Writeups
+    role: Participant
+    year: 2024-2025
+    details: DFIR, networking, cryptography; writeups planned for GitHub.
+
+lastUpdated: 2025-08-09

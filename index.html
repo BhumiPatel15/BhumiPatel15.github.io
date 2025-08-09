@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bhumi Patel — Portfolio</title>
+  <meta name="description" content="Dynamic one-page resume for Bhumi Patel" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- YAML parser -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="brand-text">portfolio</span></div>
+    <div class="top-actions">
+      <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">Theme</button>
+      <button class="btn ghost" onclick="window.print()">PDF</button>
+    </div>
+  </div>
+
+  <main class="container">
+    <header class="hero center">
+      <h1 id="name">Bhumi Patel</h1>
+      <p id="contactLine" class="contact-line"></p>
+      <p id="summary" class="summary"></p>
+    </header>
+
+    <section id="experience" class="card"></section>
+    <section id="certs" class="card"></section>
+    <section id="skills" class="card"></section>
+    <section id="organizations" class="card"></section>
+    <section id="volunteering" class="card"></section>
+    <section id="education" class="card"></section>
+    <section id="projects" class="card"></section>
+  </main>
+
+  <footer class="footer">
+    <small>Last updated: <span id="lastUpdated"></span> • Edit <code>data.yml</code> only.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
