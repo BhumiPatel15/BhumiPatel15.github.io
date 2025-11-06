@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0f14;
+  --panel: #0f151d;
+  /* Green default */
+  --accent: 145 84% 52%;
+  --accent-400: 145 82% 56%;
+  --accent-600: 145 78% 46%;
+}
+
+html[data-accent='green'] { --accent: 145 84% 52%; --accent-400: 145 82% 56%; --accent-600: 145 78% 46%; }
+html[data-accent='cyan'] { --accent: 190 95% 55%; --accent-400: 190 90% 60%; --accent-600: 190 85% 45%; }
+html[data-accent='purple'] { --accent: 270 90% 70%; --accent-400: 270 88% 75%; --accent-600: 270 80% 62%; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-[#0b0f14] text-slate-300 font-mono antialiased;
+  overflow-x: hidden;
+}
+
+.container-max { @apply max-w-6xl mx-auto px-4 sm:px-6; }
+
+.code-window {
+  /* Using a concrete color to satisfy Tailwind parser; keep var for theme elsewhere */
+  @apply rounded-2xl border border-white/10 bg-[#0f151d]/90 backdrop-blur-sm shadow-glow;
+}
+.code-window-titlebar {
+  @apply flex items-center gap-2 border-b border-white/10 px-4 py-3 text-sm text-slate-300/80;
+}
+.code-window-dot { @apply h-3 w-3 rounded-full bg-slate-500; }
+.code-window-dot.red { @apply bg-red-500/90; }
+.code-window-dot.yellow { @apply bg-yellow-400/90; }
+.code-window-dot.green { @apply bg-green-500/90; }
+
+.glow { text-shadow: 0 0 8px hsl(var(--accent) / 0.55); }
+
+a { @apply text-accent hover:text-accent-400 underline-offset-4 hover:underline; }
+
+/* Focus outlines */
+:focus-visible { outline: 2px solid hsl(var(--accent)); outline-offset: 2px; }
+
+/* Scanline overlay */
+html[data-scanlines='on'] body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 10;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.06) 0px,
+    rgba(255,255,255,0.06) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* Reduced motion toggle */
+html[data-reduce-motion='on'] * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/******** Utilities ********/
+.progress-outer { @apply w-full rounded-full border border-white/15 bg-black/30; }
+.progress-inner { @apply h-2 rounded-full bg-accent; background-image: linear-gradient(90deg, hsl(var(--accent-600)) 0%, hsl(var(--accent)) 50%, hsl(var(--accent-400)) 100%); }
+
+.section-title { @apply text-xl sm:text-2xl tracking-wider text-accent mb-4 glow; }
+.subtle { @apply text-slate-400; }
+.card { @apply code-window p-5; overflow-wrap: anywhere; word-break: break-word; }
+
+/* Chips / tags */
+.chip { @apply inline-flex items-center rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-xs text-slate-300; position: relative; }
+.chip-accent { color: hsl(var(--accent)); border-color: hsl(var(--accent) / 0.35); background-color: hsl(var(--accent) / 0.12); }
+.chip-accent::after { content: ''; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); border-left: 8px solid hsl(var(--accent) / 0.12); border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+.group:hover .chip { @apply border-white/20; }
+
+/* Rectangular keyword chips */
+.chip-rect { @apply inline-flex items-center whitespace-nowrap border border-accent/50 bg-[#0f151d]/80 px-3 py-1.5 text-sm sm:text-base rounded-md leading-tight shadow-glow font-medium; color: #fff; }
+.chip-rect:hover { @apply border-accent/60; }
+
+/* Responsive grid layout for keyword pills */
+.pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; }
+@media (min-width: 640px) {
+  .pill-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
+
+/* Scrollspy active state */
+.nav-active { @apply text-accent; }
+
+/* Hide horizontal scrollbar for scrollable nav on mobile */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }

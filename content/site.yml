@@ -1,0 +1,73 @@
+name: "Bhumi Patel"
+handle: "@BhumiPatel15"
+role: "Grad Student . SRE . Support Specialist"
+tagline: "Encrypted with trust—building secure, reliable cloud systems that are observable, automated, and audit-ready."
+about: "I’m a Master’s student in Cybersecurity at Roosevelt University with a background in SRE and support engineering. I secure and scale workloads on AWS/GCP, instrument environments with Splunk (Enterprise & Cloud), and automate delivery using Jenkins, GitLab CI, Python, and YAML. In healthcare, I’ve implemented HL7 data flows, enforced HIPAA/HITRUST controls, and used Jira/Confluence/GitHub for clear, traceable documentation. My approach is straightforward: design for security from the start, keep systems observable, and make compliance easy to demonstrate."
+location: ""
+email: "patelbhumi151196@gmail.com"
+resume: "BHUMI_J_PATEL.pdf"
+socials:
+  - { label: "GitHub", url: "https://github.com/BhumiPatel15" }
+  - { label: "Bhumi Patel | LinkedIn", url: "https://www.linkedin.com/in/bhumi-j-patel" }
+accent: "green" # green | cyan | purple
+
+# UI toggles
+# - scanlines: subtle overlay like a CRT
+# - reducedMotion: disables animations/transitions for ultra-clean feel
+# These are read by BaseLayout to set data attributes on <html>
+toggles:
+  scanlines: true
+  reducedMotion: false
+
+# Optional stats for About section chips
+stats:
+  - { label: "yrs experience", value: "3+" }
+  - { label: "", value: "SIEM & Cloud" }
+  - { label: "", value: "HIPAA/HITRUST focus" }
+
+# Keyword skills for rectangular pills
+keywords:
+  - "Splunk"
+  - "AWS"
+  - "GCP"
+  - "SIEM"
+  - "Incident Response"
+  - "Compliance"
+  - "HIPAA"
+  - "HL7"
+  - "Linux"
+  - "Python"
+  - "YAML"
+  - "Bash"
+  - "Risk Management"
+  - "Cloud Security"
+  - "Secure SDLC"
+  - "Vulnerability Scanning"
+  - "Jira"
+  - "Confluence"
+  - "GitLab CI"
+  - "Jenkins"
+  - "Puppet"
+  - "Automation"
+  - "Wireshark"
+  - "Nmap"
+  - "IAM"
+  - "Firewall"
+  - "Logging"
+  - "Audit Readiness"
+
+# Section titles and nav labels
+sections:
+  home: "Home"
+  about: "About"
+  skills: "Skills"
+  experience: "Experience"
+  education: "Education"
+  certs: "Certifications & Awards"
+  projects: "Featured Projects"
+  orgs: "Organizations & Leadership"
+  contact: "Get in touch"
+
+# Contact configuration
+contact:
+  formAction: "https://formspree.io/f/xaylqprq"

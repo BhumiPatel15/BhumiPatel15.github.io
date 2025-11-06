@@ -1,0 +1,26 @@
+---
+import type { Organization } from '@types';
+import CodeWindow from './CodeWindow.astro';
+interface Props { org: Organization; tag: string }
+const { org, tag } = Astro.props as Props;
+---
+<CodeWindow title={`${org.name} · ${tag}`} class="h-full min-h-[180px] sm:min-h-[190px] md:min-h-[200px] lg:min-h-[220px]">
+  <div class="text-sm text-slate-300 flex h-full flex-col leading-snug">
+    <div class="flex items-baseline justify-between gap-3">
+      <div class="font-medium">{org.role}</div>
+      {(org.start || org.end) && (
+        <div class="text-xs text-slate-500 whitespace-nowrap">{org.start}{org.start && org.end ? ' – ' : ''}{org.end}</div>
+      )}
+    </div>
+    {org.highlights && (
+      <ul class="mt-2 list-disc pl-5 space-y-1">
+        {org.highlights.slice(0,3).map(h => (<li>{h}</li>))}
+      </ul>
+    )}
+    {org.link && (
+      <div class="mt-auto pt-2">
+        <a href={org.link} target="_blank" rel="noopener">Learn more</a>
+      </div>
+    )}
+  </div>
+</CodeWindow>

@@ -1,0 +1,44 @@
+- title: "Stack Lights"
+  stack: ["Astro", "Tailwind", "Cloudflare Pages"]
+  summary: "A blazing portfolio starter with a terminal vibe"
+  repo: "https://github.com/example/stack-lights"
+  demo: "https://stacklights.example.dev"
+  featured: true
+- title: "Keycast"
+  stack: ["TypeScript", "WebUSB"]
+  summary: "Visualize keystrokes in the browser"
+  repo: "https://github.com/example/keycast"
+  demo: "https://keycast.example.dev"
+  featured: false
+- title: "Tiny Charts"
+  stack: ["D3", "Svelte"]
+  summary: "Chart primitives for tiny dashboards"
+  repo: "https://github.com/example/tiny-charts"
+  demo: "https://charts.example.dev"
+  featured: false
+
+# Added user projects
+- title: "Electronic Health Records (EHR) System Analysis"
+  stack: ["Risk Analysis", "Healthcare", "HIPAA", "Security"]
+  summary: "Analyzed MedDataCorp’s EHR security posture using risk frameworks. Identified vulnerabilities and proposed stronger data protection measures to improve compliance and reliability."
+  featured: true
+
+- title: "User Policy Violation Investigation"
+  stack: ["SIEM", "Splunk", "Incident Response"]
+  summary: "Investigated simulated corporate user violations using security tools and log analysis. Presented clear findings with mitigation plans to prevent future incidents."
+  featured: true
+
+- title: "Healthcare Access Triage Bot"
+  stack: ["Python", "Chatbot", "Scheduling", "Analytics"]
+  summary: "Built a healthcare MVP combining chatbot, scheduling, and analytics features. Followed a secure development process to protect patient data and ensure confidentiality."
+  featured: true
+
+- title: "EduGuard — On-Chain RBAC Portal"
+  stack: ["Solidity", "Blockchain", "RBAC", "Smart Contracts"]
+  summary: "Developed a blockchain-based role management portal in Solidity for teachers and students. Enabled secure assignment posting, submission, and grading through transparent on-chain validation."
+  featured: true
+
+- title: "Personal Portfolio Website"
+  stack: ["Astro", "Tailwind", "GitHub Pages"]
+  summary: "Designed and developed a personal portfolio website to showcase cybersecurity, cloud, and blockchain projects. Focused on responsive design, accessibility, and easy content updates for ongoing growth."
+  featured: true

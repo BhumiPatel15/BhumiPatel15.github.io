@@ -1,0 +1,27 @@
+- title: "Cybersecurity & Compliance Intern"
+  company: "SafeCHR"
+  start: ""
+  end: ""
+  desc: >-
+    I led secure architecture and compliance planning for an NGO platform that supports survivors of human trafficking. I mapped workflows to HIPAA and HL7, set up controls and evidence in Jira, Confluence, and GitHub, and aligned security with the SDLC from the start. This structure improved audit readiness and made security tasks clearer and faster for the team.
+
+- title: "Site Reliability Engineer"
+  company: "Crest Data Systems"
+  start: ""
+  end: ""
+  desc: >-
+    I deployed and maintained scalable systems on AWS and GCP and kept them observable with Splunk (Enterprise & Cloud). I automated builds and operations using Jenkins, GitLab CI, Puppet, Python, and YAML, which improved performance and reliability. I also connected Slack alerts and runbooks to speed up incident response and strengthen on-call practices.
+
+- title: "Support / Interoperability Engineer"
+  company: "eClinicalWorks"
+  start: ""
+  end: ""
+  desc: >-
+    I worked on healthcare data flows by implementing HL7 interfaces and writing SQL/MySQL checks to improve accuracy across systems. I supported cloud-based workflows with automation and validation and helped align day-to-day processes with HIPAA Security and Privacy requirements.
+
+- title: "QA Intern (Cloud Digital Signage)"
+  company: "Carloman Systems"
+  start: ""
+  end: ""
+  desc: >-
+    I researched MQTT messaging, performed manual testing, and wrote a detailed report that informed product fixes and improvements. The role deepened my understanding of AWS services, cloud design, and how to turn test results into clear, actionable guidance for engineers.

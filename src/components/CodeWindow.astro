@@ -1,0 +1,15 @@
+---
+interface Props { title?: string; class?: string }
+const { title, class: klass } = Astro.props as Props;
+---
+<div class={`code-window ${klass ?? ''}`}>
+  <div class="code-window-titlebar">
+    <span class="code-window-dot red"></span>
+    <span class="code-window-dot yellow"></span>
+    <span class="code-window-dot green"></span>
+    {title && <span class="ml-3 text-slate-400">{title}</span>}
+  </div>
+  <div class="p-4 overflow-x-auto">
+    <slot />
+  </div>
+</div>

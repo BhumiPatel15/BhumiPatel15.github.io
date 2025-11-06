@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00e287"/>
+      <stop offset="1" stop-color="#69f0ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0b0f14"/>
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="#0f151d" stroke="url(#g)" stroke-opacity="0.3"/>
+  <g fill="#00e287" fill-opacity="0.9">
+    <circle cx="110" cy="110" r="8"/>
+    <circle cx="134" cy="110" r="8" fill="#ffd54f"/>
+    <circle cx="158" cy="110" r="8" fill="#66bb6a"/>
+  </g>
+  <text x="120" y="190" fill="#bfead8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="72" letter-spacing="1">Terminal Portfolio</text>
+  <text x="120" y="250" fill="#9fb4c4" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="28">Fast, accessible, neon-themed Astro site</text>
+  <text x="120" y="320" fill="#00e287" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="24">$ npm run build</text>
+</svg>

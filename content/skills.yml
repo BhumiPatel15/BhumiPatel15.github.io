@@ -1,0 +1,10 @@
+- { name: "JavaScript", level: 90, category: "Languages" }
+- { name: "TypeScript", level: 85, category: "Languages" }
+- { name: "HTML", level: 95, category: "Languages" }
+- { name: "CSS", level: 92, category: "Languages" }
+- { name: "React", level: 88, category: "Frameworks" }
+- { name: "Astro", level: 80, category: "Frameworks" }
+- { name: "Tailwind CSS", level: 90, category: "Frameworks" }
+- { name: "Node.js", level: 75, category: "Platforms" }
+- { name: "Accessibility (a11y)", level: 82, category: "Practices" }
+- { name: "Testing", level: 70, category: "Practices" }

@@ -1,0 +1,13 @@
+- degree: "M.S. Cybersecurity"
+  school: "Roosevelt University (Chicago, IL)"
+  start: ""
+  end: "Expected Dec 2025"
+  desc: >-
+    Graduate study focused on cloud security, SIEM with Splunk, incident response, identity/IAM, and secure SDLC. I’ve done hands-on work in AWS (IAM, VPC, KMS, GuardDuty/CloudTrail), Linux hardening, and light automation with Python/Bash, building a practical mindset for securing real systems.
+
+- degree: "B.S. Computer Science"
+  school: "Dharmsinh Desai Institute of Technology (India)"
+  start: ""
+  end: ""
+  desc: >-
+    Undergraduate training in core CS: algorithms, operating systems, networks, databases, and software engineering. I built strong foundations in C/Java/Python, SQL, Git, and Linux, which now support my cybersecurity work.

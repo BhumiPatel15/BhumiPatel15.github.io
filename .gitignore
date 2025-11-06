@@ -1,0 +1,14 @@
+# Dependencies
+node_modules
+
+# Build
+/dist
+/.astro
+
+# Env
+.env
+.env.*
+
+# Editor
+.vscode
+.DS_Store

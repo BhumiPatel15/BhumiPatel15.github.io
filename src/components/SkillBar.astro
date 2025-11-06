@@ -1,0 +1,13 @@
+---
+interface Props { name: string; level: number }
+const { name, level } = Astro.props as Props;
+---
+<div class="space-y-2">
+  <div class="flex items-center justify-between text-sm">
+    <span class="text-slate-300">{name}</span>
+    <span class="text-slate-500">{level}%</span>
+  </div>
+  <div class="progress-outer">
+    <div class="progress-inner" style={`width:${Math.max(0, Math.min(100, level))}%`}></div>
+  </div>
+</div>

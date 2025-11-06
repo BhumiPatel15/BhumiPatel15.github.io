@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CodeWindow from '@components/CodeWindow.astro';
+import Timeline from '@components/Timeline.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import OrgCard from '@components/OrgCard.astro';
+import StatChip from '@components/StatChip.astro';
+import BackToTop from '@components/BackToTop.astro';
+
+import { readYamlFromContent, deriveOrgTag, uniq } from '@lib/loaders';
+import type { Site, Experience, Education, Certification, Project, Organization } from '@types';
+
+const site = await readYamlFromContent<Site>('site.yml');
+const experience = await readYamlFromContent<Experience[]>('experience.yml');
+const education = await readYamlFromContent<Education[]>('education.yml');
+const certs = await readYamlFromContent<Certification[]>('certifications.yml');
+const projects = await readYamlFromContent<Project[]>('projects.yml');
+const orgs = await readYamlFromContent<Organization[]>('organizations.yml');
+
+const sections = [
+  { id: 'hero', label: (site as any).sections?.home || 'Home', key: '1' },
+  { id: 'about', label: (site as any).sections?.about || 'About', key: '2' },
+  { id: 'skills', label: (site as any).sections?.skills || 'Skills', key: '3' },
+  { id: 'experience', label: (site as any).sections?.experience || 'Experience', key: '4' },
+  { id: 'education', label: (site as any).sections?.education || 'Education', key: '5' },
+  { id: 'certs', label: (site as any).sections?.certs || 'Certifications', key: '6' },
+  { id: 'projects', label: (site as any).sections?.projects || 'Projects', key: '7' },
+  { id: 'orgs', label: (site as any).sections?.orgs || 'Organizations', key: '8' },
+  { id: 'contact', label: (site as any).sections?.contact || 'Contact', key: '9' },
+];
+
+const orgTags = uniq(orgs.map(o => deriveOrgTag(o.name, o.role)));
+---
+<BaseLayout site={site} sections={sections}>
+  <!-- Hero -->
+  <!-- TODO: hero uses site.yml: name, handle, role, tagline, location, socials, resume, email -->
+  <section id="hero" class="pt-10 pb-12">
+    <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h1 class="text-3xl sm:text-4xl text-slate-100">
+          <span class="text-accent glow">{site.name}</span>
+          {site.handle && (<span class="ml-2 text-slate-500">{site.handle}</span>)}
+        </h1>
+        <p class="mt-2 text-slate-400">{site.role}{site.location ? ` · ${site.location}` : ''}</p>
+        <p class="mt-4 max-w-2xl text-slate-300">{site.tagline}</p>
+        <div class="mt-5 flex flex-wrap gap-3 text-sm">
+          <a href={site.resume} target="_blank" rel="noopener" class="rounded border border-white/15 bg-black/30 px-4 py-2 hover:text-accent">{(site as any).cta?.viewResume || 'View Resume'}</a>
+          <a href={`mailto:${site.email}`} class="rounded border border-white/15 bg-black/30 px-4 py-2 hover:text-accent" id="emailBtn">{(site as any).cta?.contact || 'Contact'}</a>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-3 text-sm">
+          {site.socials.map((s) => (<a href={s.url} target="_blank" rel="noopener" class="subtle hover:text-accent">{s.label}</a>))}
+        </div>
+      </div>
+      <CodeWindow title="bash" class="w-full sm:w-1/2">
+        <pre class="text-slate-200 text-sm whitespace-pre leading-relaxed">
+$ security-posture
+
+┌──────────────────────────────────────────────────────────┐
+│ Security Posture — Splunk Dashboard                      │
+├──────────────────────────────────────────────────────────┤
+│ Live Incidents:               0 critical | 3 high         │
+│ Error Volume (24h):           127                         │
+│ Top Talkers:                  api-01 | etl-02 | web-03    │
+│ Blocked Threats (WAF/IDS):    14 (today)                  │
+│ PHI Access Anomalies (HIPAA): 0 unusual                   │
+│ Core Uptime (rolling 30d):    99.97%                      │
+└──────────────────────────────────────────────────────────┘
+        </pre>
+      </CodeWindow>
+    </div>
+  </section>
+
+  <!-- About -->
+  <!-- TODO: about uses site.yml: stats (array of {label,value}) and tagline as bio -->
+  <section id="about" class="my-12">
+    <h2 class="section-title">{(site as any).sections?.about || 'About'}</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="md:col-span-2 card">
+        <p class="text-slate-300">{(site as any).about || site.tagline}</p>
+      </div>
+      <div class="flex flex-wrap gap-2 self-start">
+        {(site as any).stats?.map((s:any) => (<StatChip label={s.label} value={s.value} />))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <!-- TODO: skills from skills.yml with category filters -->
+  <section id="skills" class="my-12">
+    <h2 class="section-title">{(site as any).sections?.skills || 'Skills'}</h2>
+    {(site as any).keywords?.length ? (
+      <div class="mt-3 flex flex-wrap gap-2">
+        {(site as any).keywords.map((k: string) => (<span class="chip-rect">{k}</span>))}
+      </div>
+    ) : null}
+  </section>
+
+  <!-- Experience -->
+  <!-- TODO: experience from experience.yml -->
+  <section id="experience">
+    <Timeline title={(site as any).sections?.experience || 'Experience'} items={experience.map(e => ({ title: e.title, subtitle: e.company, start: e.start, end: e.end, bullets: e.bullets, desc: (e as any).desc }))} />
+  </section>
+
+  <!-- Education -->
+  <!-- TODO: education from education.yml -->
+  <section id="education">
+    <Timeline collapsible title={(site as any).sections?.education || 'Education'} items={education.map(e => ({ title: e.degree, subtitle: e.school, start: e.start, end: e.end, bullets: e.details, desc: (e as any).desc }))} />
+  </section>
+
+  <!-- Certifications & Awards -->
+  <!-- TODO: certs from certifications.yml -->
+  <section id="certs" class="my-12">
+    <h2 class="section-title">{(site as any).sections?.certs || 'Certifications & Awards'}</h2>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {certs.map(c => (
+        <details class="card">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <div>
+              <div class="font-medium text-slate-200">{c.title}</div>
+              <div class="subtle">{c.org}</div>
+            </div>
+            <div class="text-xs text-slate-500">{c.year}</div>
+          </summary>
+          <p class="mt-3 text-sm text-slate-300">{c.blurb}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <!-- TODO: projects from projects.yml with featured flag -->
+  <section id="projects" class="my-12">
+    <h2 class="section-title">{(site as any).sections?.projects || 'Featured Projects'}</h2>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.filter(p => p.featured).map(p => (<ProjectCard project={p} />))}
+    </div>
+  </section>
+
+  <!-- Organizations & Leadership -->
+  <!-- TODO: organizations from organizations.yml with derived tags and filters -->
+  <section id="orgs" class="my-12">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="section-title">{(site as any).sections?.orgs || 'Organizations & Leadership'}</h2>
+      <div id="orgFilters" class="flex flex-wrap gap-2">
+        {['All', ...orgTags].map(t => (<button class="rounded-2xl border border-white/15 px-3 py-1 text-xs" data-orgtag={t}>{t}</button>))}
+      </div>
+    </div>
+    <div class="mt-6 grid auto-rows-fr items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3" id="orgGrid">
+      {orgs.map(o => {
+        const tag = deriveOrgTag(o.name, o.role);
+        return (<div class="h-full" data-tag={tag}><OrgCard org={o} tag={tag} /></div>);
+      })}
+    </div>
+    <script>
+      const og = document.getElementById('orgGrid');
+      document.getElementById('orgFilters')?.addEventListener('click', (e) => {
+        const target = e.target;
+        const btn = target && target.closest ? target.closest('[data-orgtag]') : null; if (!btn) return;
+        const value = btn.getAttribute('data-orgtag');
+        document.querySelectorAll('#orgFilters [data-orgtag]').forEach((b) => b.classList.remove('bg-accent/20','text-accent'));
+        btn.classList.add('bg-accent/20','text-accent');
+        Array.from(og ? og.children : []).forEach((el) => {
+          if (!(el instanceof HTMLElement)) return;
+          el.style.display = (value === 'All' || el.getAttribute('data-tag') === value) ? '' : 'none';
+        });
+      });
+    </script>
+  </section>
+
+  <!-- Contact -->
+  <!-- TODO: contact uses site.yml email and contact form action -->
+  <section id="contact" class="my-16">
+    <h2 class="section-title">{(site as any).sections?.contact || 'Get in touch'}</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="card">
+        <p>Email</p>
+        <div class="mt-2 flex items-center gap-3">
+          <a href={`mailto:${site.email}`} class="rounded border border-white/15 bg-black/30 px-3 py-1">{site.email}</a>
+          <button id="copyEmail" class="rounded border border-white/15 bg-black/30 px-3 py-1 text-xs">Copy</button>
+        </div>
+        <script>
+          document.getElementById('copyEmail')?.addEventListener('click', async () => {
+            await navigator.clipboard.writeText('{site.email}');
+            const btn = document.getElementById('copyEmail');
+            if (btn) { btn.innerText = 'Copied!'; setTimeout(() => { btn.innerText = 'Copy'; }, 1200); }
+          });
+        </script>
+      </div>
+      <div class="card">
+        <form method="POST" action={(site as any).contact?.formAction || '#'} class="space-y-3">
+          <label class="block text-sm">Name
+            <input name="name" required class="mt-1 w-full rounded border border-white/15 bg-black/30 px-3 py-2" />
+          </label>
+          <label class="block text-sm">Email
+            <input type="email" name="email" required class="mt-1 w-full rounded border border-white/15 bg-black/30 px-3 py-2" />
+          </label>
+          <label class="block text-sm">Message
+            <textarea name="message" required class="mt-1 w-full rounded border border-white/15 bg-black/30 px-3 py-2" rows="4"></textarea>
+          </label>
+          <button type="submit" class="rounded border border-white/15 bg-black/30 px-4 py-2 hover:text-accent">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <BackToTop />
+
+  <script>
+    document.getElementById('emailBtn')?.addEventListener('click', (e) => {
+      // Just let mailto open; also copy email for convenience
+      navigator.clipboard.writeText('{site.email}').catch(()=>{});
+    });
+  </script>
+</BaseLayout>

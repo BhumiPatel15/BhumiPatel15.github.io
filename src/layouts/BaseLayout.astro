@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import type { Site } from '@types';
+
+interface Props { site: Site; sections: { id: string; label: string; key: string }[] }
+const { site, sections } = Astro.props as Props;
+const title = `${site.name} ${site.handle ? `(${site.handle})` : ''}`.trim();
+---
+<!DOCTYPE html>
+<html lang="en" data-accent={site.accent} data-scanlines={site.toggles.scanlines ? 'on' : 'off'} data-reduce-motion={site.toggles.reducedMotion ? 'on' : 'off'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — {site.role}</title>
+    <meta name="description" content={site.tagline} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={`${title} — ${site.role}`} />
+    <meta property="og:description" content={site.tagline} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og.svg" />
+  </head>
+  <body>
+    <a href="#content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-black/70 focus:text-white px-3 py-2 rounded">Skip to content</a>
+
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b0f14]/80 backdrop-blur supports-[backdrop-filter]:bg-[#0b0f14]/60">
+      <nav class="container-max relative flex items-center justify-between py-3 text-sm">
+        <div class="min-w-0 font-mono text-accent glow truncate pr-3">{title}</div>
+        <button id="menuBtn" class="sm:hidden rounded border border-white/15 bg-black/30 px-3 py-2" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation">
+          <span class="block h-0.5 w-5 bg-slate-300"></span>
+          <span class="mt-1 block h-0.5 w-5 bg-slate-300"></span>
+          <span class="mt-1 block h-0.5 w-5 bg-slate-300"></span>
+        </button>
+        <ul class="hidden items-center gap-4 sm:flex" id="navPrimary">
+          {sections.map((s) => (
+            <li><a data-section={s.id} href={`#${s.id}`} class="subtle hover:text-accent" aria-label={`Jump to ${s.label}`}>{s.label}</a></li>
+          ))}
+        </ul>
+
+        <!-- Mobile dropdown panel -->
+        <div id="mobileMenu" class="absolute left-0 right-0 top-full hidden border-b border-white/10 bg-[#0b0f14]/95 px-4 py-3 sm:hidden">
+          <ul class="flex flex-col gap-2" id="navMobile">
+            {sections.map((s) => (
+              <li><a data-section={s.id} href={`#${s.id}`} class="block py-1 subtle hover:text-accent">{s.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content" class="container-max">
+      <slot />
+    </main>
+
+    <footer class="mt-16 mb-10 text-center text-xs text-slate-500">
+      <div>© {new Date().getFullYear()} {site.name}. Last updated {new Date().toISOString().slice(0,10)}</div>
+      <div class="mt-2">
+        {sections.map((s, i) => (<a href={`#${s.id}`} class="mx-2 subtle hover:text-accent">{s.label}</a>))}
+      </div>
+    </footer>
+
+    <script is:inline>
+      const sectionEls = Array.from(document.querySelectorAll('section[id]'));
+      const navLinks = new Map(Array.from(document.querySelectorAll('#navPrimary [data-section], #navMobile [data-section]')).map(a => [a.getAttribute('data-section'), a]));
+      const onActive = (id) => {
+        navLinks.forEach(el => el.classList.remove('nav-active'));
+        const el = navLinks.get(id); if (el) el.classList.add('nav-active');
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) onActive(e.target.id); });
+      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
+      sectionEls.forEach(s => io.observe(s));
+
+      // Keyboard shortcuts 1-9: derive unique IDs from desktop nav DOM
+      const ids = Array.from(new Set(Array.from(document.querySelectorAll('#navPrimary [data-section]'))
+        .map(a => a.getAttribute('data-section'))
+        .filter(Boolean)));
+      addEventListener('keydown', (e) => {
+        if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+        const idx = Number(e.key) - 1; if (!Number.isInteger(idx) || idx < 0 || idx >= ids.length) return;
+        const id = ids[idx]; if (!id) return;
+        const el = document.getElementById(id); if (!el) return; e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // Mobile menu toggle
+      const btn = document.getElementById('menuBtn');
+      const panel = document.getElementById('mobileMenu');
+      const closePanel = () => { if (!panel || !btn) return; panel.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); };
+      const openPanel = () => { if (!panel || !btn) return; panel.classList.remove('hidden'); btn.setAttribute('aria-expanded', 'true'); };
+      btn?.addEventListener('click', () => {
+        if (!panel) return;
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        open ? closePanel() : openPanel();
+      });
+      // Close on link click
+      document.getElementById('navMobile')?.addEventListener('click', (e) => {
+        const target = e.target; const link = target && target.closest ? target.closest('a[href^="#"]') : null; if (link) closePanel();
+      });
+      // Close on Escape
+      addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+- name: "Girls Who Code, Roosevelt University"
+  role: "President"
+  start: ""
+  end: ""
+  highlights:
+    - "Lead the student chapter by organizing coding workshops, portfolio-building sessions, and outreach events that promote inclusivity in tech."
+    - "Mentor students in hands-on coding and cybersecurity projects."
+- name: "Women in CyberSecurity (WiCyS), Roosevelt University"
+  role: "Vice President"
+  start: ""
+  end: ""
+  highlights:
+    - "Support chapter operations, mentorship programs, and event coordination."
+    - "Collaborate with industry partners to provide members with training, CTF opportunities, and career guidance in cybersecurity."
